@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>FONÉTICA-LAB | Panel de profesora</title>
+<style>
+:root{--navy:#153942;--green:#126d73;--mint:#edf6f2;--line:#d9e4e0;--muted:#5a7477;--cream:#faf8f3;--danger:#a73e36}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--navy);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.45}
+header{background:var(--navy);color:white;padding:20px max(18px,calc((100vw - 1180px)/2));display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.brand{font-size:21px;font-weight:800;letter-spacing:-.025em}header small{display:block;font-size:12px;color:#b6d6d1;font-weight:400}main{max-width:1180px;padding:30px 18px 90px;margin:auto}.card{background:white;border-radius:15px;border:1px solid var(--line);padding:24px;box-shadow:0 10px 25px #15394206}.card+ .card{margin-top:19px}h1{font-size:29px;line-height:1.15;letter-spacing:-.03em}h2{font-size:19px;margin:0 0 15px}p{margin:8px 0 14px}.muted{color:var(--muted)}label{font-size:13px;font-weight:650;display:block;margin:0 0 6px}input,select{display:block;width:100%;padding:11px 13px;border:1px solid #b8ceca;border-radius:8px;background:#fff;color:var(--navy);font:inherit}input:focus,select:focus,button:focus-visible{outline:3px solid #a8cfc6;outline-offset:2px}.btn{padding:11px 15px;border:0;border-radius:9px;background:var(--green);color:white;font:inherit;font-size:14px;font-weight:700;cursor:pointer}.btn:hover{filter:brightness(.95)}.btn.soft{background:#e9f3f0;color:var(--navy)}.btn.danger{background:#faebeb;color:var(--danger)}.btn:disabled{opacity:.5;cursor:default}.flex{display:flex;gap:12px;align-items:end;flex-wrap:wrap}.flex>*{flex:1;min-width:140px}.flex>.btn{flex:0 0 auto}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}.stat{background:#f5faf8;border:1px solid #e1eee7;border-radius:13px;padding:16px}.stat strong{display:block;font-size:30px;letter-spacing:-.045em}.stat span{font-size:12px;color:var(--muted)}.status{font-size:13px;padding:11px 14px;border-radius:8px;background:#e9f3f0;color:#205b53;margin:15px 0}.status.error{background:#fff0ed;color:#9a342e}.actions{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.actions>*{width:auto}.bars{display:grid;gap:12px}.bar-row{display:grid;grid-template-columns:minmax(140px,1.2fr) minmax(120px,3fr) 80px;gap:12px;align-items:center;font-size:13px}.bar{height:12px;background:#e6efeb;border-radius:99px;overflow:hidden}.bar>div{height:100%;background:var(--green);border-radius:99px}table{border-collapse:collapse;width:100%;font-size:13px}th,td{border-bottom:1px solid #e1eae6;padding:10px 8px;text-align:left;vertical-align:top}th{background:#f3f8f6}tr:nth-child(even) td{background:#fbfdfc}.scroll{overflow:auto}.two{display:grid;grid-template-columns:1fr 1fr;gap:19px}.hint{font-size:12px;color:var(--muted);margin-top:8px}.hidden{display:none!important}footer{font-size:12px;color:var(--muted);margin-top:30px}.badge{padding:5px 9px;border-radius:6px;background:#e4f1ed;font-size:11px;font-weight:bold}.login{max-width:480px;margin:40px auto}.mono{font-family:ui-monospace,Consolas,monospace;font-size:12px}.module{font-weight:650}#report-text{white-space:pre-wrap;font-size:12px;line-height:1.55;background:#f6faf8;border:1px solid #e3ede9;padding:15px;border-radius:9px;max-height:300px;overflow:auto}@media(max-width:760px){.two{grid-template-columns:1fr}.bar-row{grid-template-columns:95px 1fr 55px}.card{padding:17px}h1{font-size:24px}}@media print{header .btn,form,.actions,#login-card,#create-class,#danger-zone,.no-print{display:none!important}body{background:white}main{max-width:none}.card{box-shadow:none;break-inside:avoid}#report-text{max-height:none}}
+</style>
+</head>
+<body>
+<header><div class="brand">FONÉTICA-LAB <small>Panel privado del profesorado · Estadísticas de aprendizaje</small></div><div style="display:flex;gap:12px;align-items:center"><a href="./index.html" style="color:#d7eee9">Abrir aplicación</a><button id="logout" class="btn soft hidden">Cerrar sesión</button></div></header>
+<main>
+<div id="status" class="status" role="status">Comprobando configuración…</div>
+<section id="login-card" class="card login hidden">
+ <h1>Acceso de profesora</h1><p class="muted">Inicia sesión con la cuenta que hayas creado en Supabase Auth. Los resultados de los alumnos no están alojados en GitHub.</p>
+ <form id="login-form"><label for="email">Correo electrónico</label><input id="email" type="email" autocomplete="username" required><br><label for="password">Contraseña</label><input id="password" type="password" autocomplete="current-password" required><br><button type="submit" class="btn">Iniciar sesión</button></form>
+ <p class="hint">Sin configuración, puedes usar FONÉTICA-LAB, pero el panel no recibirá datos. No incluyas contraseñas ni claves privadas en archivos del repositorio.</p>
+</section>
+<section id="app" class="hidden">
+<div class="card" id="create-class">
+ <h1 style="margin:0 0 8px">Informes de tus clases</h1><p class="muted">Crea una clase y comunica a tus estudiantes su código de ocho caracteres. Cada navegador genera un código seudónimo propio.</p>
+ <form id="new-class-form" class="flex"><div><label for="class-name">Nombre del grupo</label><input id="class-name" placeholder="Fonética · grupo A · 2026/27" required minlength="3" maxlength="100"></div><button class="btn" type="submit">Crear clase</button></form>
+ <p class="hint">La creación de clases y los resultados solo se muestran al usuario autenticado al que pertenezcan (RLS).</p>
+</div>
+<div class="card"><div class="flex"><div><label for="class-select">Clase que quieres consultar</label><select id="class-select"><option value="">Selecciona o crea una clase</option></select></div><button id="refresh" class="btn">Actualizar datos</button></div><div id="class-tools" class="actions hidden"><button id="copy-code" class="btn soft">Copiar código</button><button id="toggle-class" class="btn soft">Desactivar clase</button><button id="download-csv" class="btn soft">Descargar CSV</button><button id="download-report" class="btn soft">Descargar informe TXT</button><button id="print-report" class="btn soft">Imprimir / guardar PDF</button></div><div id="class-info" class="hint"></div></div>
+<div id="results" class="hidden">
+ <div id="stats" class="grid" style="margin:20px 0"></div>
+ <div class="two"><div class="card"><h2>Rendimiento por módulo</h2><div id="module-chart" class="bars"></div></div><div class="card"><h2>Secciones más consultadas</h2><div id="page-chart" class="bars"></div></div></div>
+ <div class="card"><h2>Errores más frecuentes</h2><p class="hint">Se agrupan las respuestas incorrectas de las sesiones completadas. No se envían las transcripciones ni los argumentos escritos.</p><div id="errors-table" class="scroll"></div></div>
+ <div class="card"><h2>Actividad por código seudónimo</h2><p class="hint">El código pertenece a un navegador, no identifica inequívocamente a una persona. No es un registro oficial de asistencia ni de calificaciones.</p><div id="students-table" class="scroll"></div></div>
+ <div class="card"><h2>Registro reciente de actividad</h2><div id="events-table" class="scroll"></div></div>
+ <div class="card"><h2>Informe docente automático</h2><p class="hint">Resumen descriptivo de esta clase para ayudarte a preparar una memoria de aplicación; no implica evaluación institucional ni prueba de eficacia causal.</p><div id="report-text"></div></div>
+ <div class="card" id="danger-zone"><h2>Protección de datos</h2><p class="muted">Puedes eliminar permanentemente todos los registros de esta clase. Esto no borra los ejercicios guardados localmente en los navegadores del alumnado.</p><button id="delete-records" class="btn danger">Eliminar los registros de esta clase</button></div>
+</div>
+</section>
+<footer>FONÉTICA-LAB 3.1 · Seguimiento seudónimo y optativo. No se almacenan voces, grabaciones, archivos ni textos libres. Revisa la autorización y política institucional antes del uso con estudiantes.</footer>
+</main>
+<script src="./config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./informe.js"></script>
+</body></html>
